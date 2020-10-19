@@ -134,6 +134,9 @@ addCategory – создать категорию;
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @addcategory.json -X POST http:/yourdomain/categories/addcategory
 
+
+
+
 editCategory – редактировать категорию;
 
 Тело запроса: {"id":<id>,"cat_name":"<new_cat_name>"}
@@ -143,6 +146,9 @@ editCategory – редактировать категорию;
 Реализация:
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @editcategory.json -X POST http://yourdomain/categories/editcategory
+
+
+
 
 
 deleteCategory – удалить категорию
@@ -155,6 +161,9 @@ deleteCategory – удалить категорию
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @deletecategory.json -X POST http://yourdomain/categories/deletecategory
 
+
+
+
 getCategoryProducts – получить список продуктов в категории
 
 Тело запроса: {"cat_id":<id>}
@@ -164,6 +173,9 @@ getCategoryProducts – получить список продуктов в ка
 Реализация:
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @getcategoryproducts.json  -X POST http://yourdomain/categories/getcategoryproducts
+
+
+
 
 getProductsCount – получить количество товаров в категории;
 
@@ -175,6 +187,9 @@ getProductsCount – получить количество товаров в к�
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @getproductscount.json -X POST http://yourdomain/categories/getproductscount
 
+
+
+
 getProductsPrice – получить общую стоимость товаров в категории
 
 Тело запроса: {"cat_id":<id>}
@@ -184,6 +199,9 @@ getProductsPrice – получить общую стоимость товаро
 Реализация:
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d getproductsprice.json -X POST http://yourdomain/categories/getproductsprice
+
+
+
 
 
 
@@ -202,6 +220,9 @@ getProductsCount – получить общее количество товар
 
 curl -H “Authorization:your_token” http://yourdomain/products/getproductscount
 
+
+
+
 getTotalPrice – получить общую стоимость всех товаров;
 
 Ответ: Общая стоимость всех товаров или сообщение об их отсутствии
@@ -209,6 +230,9 @@ getTotalPrice – получить общую стоимость всех тов
 Реализация:
 
 curl -H “Authorization:your_token” http://yourdomain/products/gettotalprice 
+
+
+
 
 
 
@@ -247,6 +271,9 @@ addProduct – добавить продукт;
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @addproduct.json -X POST http://yourdomain/products/addproduct
 
+
+
+
 editProduct – редактировать продукт
 
 Тело запроса: {"product_id":<id>,"edited_product_params":{“product_name”:”<product_name>”,”description”:”<description>”,”text”:”text”,”price”:<price>,”count”:<count>}}
@@ -259,6 +286,9 @@ editProduct – редактировать продукт
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @editproduct.json -X POST http://yourdomain/products/editproduct
 
+
+
+
 deleteProduct – удалить товар 
 
 Тело запроса: {"product_id":<id>}
@@ -268,6 +298,9 @@ deleteProduct – удалить товар
 Реализация:
 
 curl -H “Content-Type:application/json” -H “Authorization:your_token” -d @deleteproduct.json -X POST http://yourdomain/products.deleteproduct
+
+
+
 
 
 
@@ -283,6 +316,9 @@ getProductCategories – Получить список категорий, к к
 curl -H “Content-Type: application/json” -H “Authorization: your_token” -d @getproductcategories.json -X POST http:/yourdomain/products/getproductcategories’
 
 
+
+
+
 getProductPrice – Получить общую стоимость данного товара
 
 Тело запроса: {"product_id":<id>}
@@ -295,6 +331,9 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
+
+
+
 insertProductInCategory – добавить товар в категорию
 
 Тело запроса: {"product_id":<id>,"cat_id":<id>};
@@ -304,6 +343,9 @@ insertProductInCategory – добавить товар в категорию
 Реализация:
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @insertproductincategory.json -X POST http://yourdomain/products/insertproductincategory
+
+
+
 
 
 
@@ -329,6 +371,9 @@ getUsers – получить список пользователей;
 curl -H “Authorization:your_token” http://yourdomain/users/getusers
 
 
+
+
+
 getUserParams – получить сведения о аутентифицированном пользователе в рамках текущего соединения (о себе)
 
 Ответ: Сведения о пользователе;
@@ -336,6 +381,9 @@ getUserParams – получить сведения о аутентифицир�
 Реализация:
 
 curl -H “Authorization:your_token” http://yourdomain/users/getuserinfo
+
+
+
 
 
 
@@ -368,6 +416,9 @@ createUser – создать пользователя;
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @createuser.json -X POST http://yourdomain/users/createuser
 
+
+
+
 deleteUser – удалить пользователя;
 
 Тело запроса : {"id":<id>}
@@ -377,6 +428,9 @@ deleteUser – удалить пользователя;
 Реализация:
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @deleteuser.json -X POST http://yourdomain/users/deleteuser
+
+
+
 
 
 changeUser – изменить пользователя:
@@ -390,6 +444,9 @@ changeUser – изменить пользователя:
 Реализация:
 
 curl -H “Content-Type: application/json” -H “Authorization:your_token” -d @changeuser.json -X POST http://yourdomain/users/changeuser 
+
+
+
 
 
 
