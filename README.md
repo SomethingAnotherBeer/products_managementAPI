@@ -28,7 +28,7 @@ user_surname VARCHAR(255),
 type VARCHAR(25) NOT NULL,
 token VARCHAR(255) UNIQUE
 
-categories:
+### categories:
 id – уникальный идентификатор продукта в таблице;
 cat_name – уникальное название категории;
 
@@ -37,7 +37,7 @@ cat_name – уникальное название категории;
 id INT(11) AUTO_INCREMENT PRIMARY KEY,
 cat_name VARCHAR(255) UNIQUE NOT NULL
 
-products:
+### products:
 id – Уникальный идентификатор продукта в таблице;
 product_name – уникальное название продукта;
 description – краткое описание товара;
@@ -58,7 +58,7 @@ count INT(5) NOT NULL
 
 Так как одна категория может иметь множество товаров, а один товар может принадлежать множеству категорий, то возникает необходимость в реализации дополнительной таблице для реализации связи многие-ко-многим:
 
-products_categories:
+### products_categories:
 id – уникальный идентификатор аттрибута в таблице;
 product_id – вторичный ключ, ссылающийся на таблицу products;
 cat_id – вторичный ключ, ссылающийся на таблицу categories;
@@ -73,8 +73,9 @@ FOREIGN KEY(cat_id) REFERENCES categories(id)
 
 
 Работа в приложении.
+-------------------
 
-Аутентификация в приложении
+### Аутентификация в приложении
 
 Вся работа в приложении осуществляется только аутентифицированными пользователями, по этой причине, необходимо пройти процесс аутентификации. Так как в системе уже имеются два пользователя:
 admin:
@@ -107,10 +108,11 @@ curl -H “Content-Type: application/json” -d @authentification.json -X POST h
 Для работы с товарами и категориями, вам будет достаточно прав доступа manager. Для работы с товарами, категориями и пользователями, аутентифицируйтесь в системе посредством данных пользователя типа admin.
 
 Работа с категориями:
+--------------------
 
-GET запросы:
+### GET запросы:
 
-getCategories – получить все категории товаров в приложении;
+###### getCategories – получить все категории товаров в приложении;
 
 Реализация:
 
@@ -118,7 +120,7 @@ curl -H “Authorization:your_token”  http://yourdomain/categories/getcategori
 
 Ответ: Список категорий товаров;
 
-POST запросы:
+### POST запросы:
 
 Требования к данным:
 
@@ -126,7 +128,7 @@ POST запросы:
 
 id категории – неотрицательное числовое значение;
 
-addCategory – создать категорию;
+###### addCategory – создать категорию;
 
 Тело запроса: {"cat_name":"<cat_name>"}
 
@@ -139,7 +141,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-editCategory – редактировать категорию;
+###### editCategory – редактировать категорию;
 
 Тело запроса: {"id":<id>,"cat_name":"<new_cat_name>"}
 
@@ -153,7 +155,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-deleteCategory – удалить категорию
+###### deleteCategory – удалить категорию
 
 Тело запроса: {"cat_id":<id>}
 
@@ -166,7 +168,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-getCategoryProducts – получить список продуктов в категории
+###### getCategoryProducts – получить список продуктов в категории
 
 Тело запроса: {"cat_id":<id>}
 
@@ -179,7 +181,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-getProductsCount – получить количество товаров в категории;
+###### getProductsCount – получить количество товаров в категории;
 
 Тело запроса: {"cat_id":<id>}
 
@@ -192,7 +194,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-getProductsPrice – получить общую стоимость товаров в категории
+###### getProductsPrice – получить общую стоимость товаров в категории
 
 Тело запроса: {"cat_id":<id>}
 
@@ -211,10 +213,11 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 Работа с товарами:
+-----------------
 
-GET запросы:
+### GET запросы:
 
-getProductsCount – получить общее количество товаров;
+###### getProductsCount – получить общее количество товаров;
 
 Ответ: Количество товаров или сообщение об их отсутствии
 
@@ -225,7 +228,7 @@ curl -H “Authorization:your_token” http://yourdomain/products/getproductscou
 
 
 
-getTotalPrice – получить общую стоимость всех товаров;
+###### getTotalPrice – получить общую стоимость всех товаров;
 
 Ответ: Общая стоимость всех товаров или сообщение об их отсутствии
 
@@ -235,21 +238,9 @@ curl -H “Authorization:your_token” http://yourdomain/products/gettotalprice
 
 
 
+### POST запросы:
 
-
-
-
-
-
-
-
-
-
-
-
-POST запросы:
-
-Требования к данным:
+###### Требования к данным:
 
 id – неотрицательное числовое значение;
 
@@ -263,7 +254,7 @@ id – неотрицательное числовое значение;
 
 Количество – неотрицательное числовое значение целого типа;
 
-addProduct – добавить продукт;
+###### addProduct – добавить продукт;
 
 Тело запроса: {"cat_id":<id>,"product_params":{"product_name":"<product_name>","description":"<description>","text":"<text>","price":<price>,"count":<count>}}
 
@@ -276,7 +267,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-editProduct – редактировать продукт
+###### editProduct – редактировать продукт
 
 Тело запроса: {"product_id":<id>,"edited_product_params":{“product_name”:”<product_name>”,”description”:”<description>”,”text”:”text”,”price”:<price>,”count”:<count>}}
 
@@ -291,7 +282,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-deleteProduct – удалить товар 
+###### deleteProduct – удалить товар 
 
 Тело запроса: {"product_id":<id>}
 
@@ -307,7 +298,7 @@ curl -H “Content-Type:application/json” -H “Authorization:your_token” -d
 
 
 
-getProductCategories – Получить список категорий, к которым принадлежит данный товар;
+###### getProductCategories – Получить список категорий, к которым принадлежит данный товар;
 
 Тело запроса: {"product_id":<id>}
 
@@ -321,7 +312,7 @@ curl -H “Content-Type: application/json” -H “Authorization: your_token” 
 
 
 
-getProductPrice – Получить общую стоимость данного товара
+###### getProductPrice – Получить общую стоимость данного товара
 
 Тело запроса: {"product_id":<id>}
 
@@ -336,7 +327,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-insertProductInCategory – добавить товар в категорию
+###### insertProductInCategory – добавить товар в категорию
 
 Тело запроса: {"product_id":<id>,"cat_id":<id>};
 
@@ -359,12 +350,13 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 Работа с пользователями:
+-----------------------
 
 Вся работа с пользователями, за исключением запроса getUserInfo, должна осуществляться только с правами доступа admin
 
-GET запросы:
+### GET запросы:
 
-getUsers – получить список пользователей;
+###### getUsers – получить список пользователей;
 
 Ответ: Список пользователей;
 
@@ -376,7 +368,7 @@ curl -H “Authorization:your_token” http://yourdomain/users/getusers
 
 
 
-getUserParams – получить сведения о аутентифицированном пользователе в рамках текущего соединения (о себе)
+###### getUserParams – получить сведения о аутентифицированном пользователе в рамках текущего соединения (о себе)
 
 Ответ: Сведения о пользователе;
 
@@ -391,9 +383,9 @@ curl -H “Authorization:your_token” http://yourdomain/users/getuserinfo
 
 
 
-POST запросы:
+### POST запросы:
 
-Требования к данным:
+### Требования к данным:
 
 логин – строковое значение, состоящее не менее чем из трех символов, кириллица и пробелы не допустимы;
 
@@ -408,7 +400,7 @@ POST запросы:
 
 
 
-createUser – создать пользователя;
+###### createUser – создать пользователя;
 
 Тело запроса: {"login":"<login>","password":"<password>","name":"<name>","surname":"<surname>","type":"<type>"}
 
@@ -421,7 +413,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-deleteUser – удалить пользователя;
+###### deleteUser – удалить пользователя;
 
 Тело запроса : {"id":<id>}
 
@@ -435,7 +427,7 @@ curl -H “Content-Type: application/json” -H “Authorization:your_token” -
 
 
 
-changeUser – изменить пользователя:
+###### changeUser – изменить пользователя:
 
 Тело запроса: {"id":<id>,"edited_user_params":{"user_name":"<user_name>","user_surname":"<user_surname>",”type”:”<type>”}}
 
